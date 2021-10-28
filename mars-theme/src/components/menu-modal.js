@@ -7,27 +7,24 @@ import Link from "./link";
  * @param props - The props passed to the component from parent.
  * @returns A React component.
  */
-const MenuModal = ({ ...props }) => {
-  // const items = state.source.get(`/menu/${state.theme.menuUrl}/`).items;
-  const { state } = useConnect();
-  const { menu } = state.theme;
-  const isThereLinks = menu?.length > 0;
+const MenuModal = ({ state, ...props }) => {
+  const items = state.source.get(`/menu/${state.theme.menuUrl}/`).items;
 
   return (
     <div {...props}>
       {state.frontity.mode !== "amp" && <MenuOverlay />}
 
       <MenuContent as="nav">
-        {isThereLinks &&
-          menu.map(([name, link]) => (
-            <MenuLink
-              key={name}
-              link={link}
-              aria-current={state.router.link === link ? "page" : undefined}
-            >
-              {name}
-            </MenuLink>
-          ))}
+        {items.map((item) => {
+            return (
+                <MenuLink
+                key={item.ID}
+                link={item.url}
+                >
+                {item.title}
+                </MenuLink>
+            );
+        })}
       </MenuContent>
     </div>
   );
@@ -68,4 +65,4 @@ const MenuLink = styled(Link)`
   }
 `;
 
-export default connect(MenuModal, { injectProps: false });
+export default connect(MenuModal);

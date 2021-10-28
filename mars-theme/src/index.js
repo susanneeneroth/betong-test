@@ -22,7 +22,6 @@ const marsTheme = {
      */
     theme: {
       autoPrefetch: "in-view",
-      menu: ["primary-menu"],
       menuUrl: "primary-menu",
       isMobileMenuOpen: false,
       featured: {

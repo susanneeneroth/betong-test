@@ -12,7 +12,6 @@ import MenuModal from "./menu-modal";
  */
 function MobileMenu({ state, actions }) {
   const { menu, isMobileMenuOpen } = state.theme;
-  if (menu?.length === 0) return null;
 
   return state.frontity.mode === "amp" ? (
     <>
